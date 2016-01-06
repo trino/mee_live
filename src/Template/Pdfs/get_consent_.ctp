@@ -255,10 +255,8 @@
                     </thead>
                     <?php
                     $i=0;
-                    if($cri)
-                        {
-                            foreach($cri as $con_cri)
-                            {
+                    if($cri) {
+                            foreach($cri as $con_cri) {
                         $co[$i] = $con_cri->offence;
                         $cd[$i] = $con_cri->date_of_sentence;
                         $cl[$i] = $con_cri->location;
@@ -266,26 +264,21 @@
                         $i++;
                     }
                     }
-                    if($i<=7)
-                    {
-                        for($j=$i;$j<=7;$j++)
-                        {
+                    if($i<=7) {
+                        for($j=$i;$j<=7;$j++) {
                             $co[$j] = '';
-                        $cd[$j] = '';
-                        $cl[$j] = '';
+                            $cd[$j] = '';
+                            $cl[$j] = '';
                         }
                     }
-                    
-                    ?>
-                    <?php
-                    for($k=0;$k<8;$k++)
-                    {
+
+                    for($k=0;$k<8;$k++) {
                         ?>
-                        <tr>
-                        <td><input type="text" class="form-control" name="offence[]" value="<?php echo $co[$k];?>" /></td>
-                        <td><input type="text" class="form-control date-picker" name="date_of_sentence[]" value="<?php echo $cd[$k];?>" /></td>
-                        <td><input type="text" class="form-control" name="location[]" value="<?php echo $cl[$k];?>"/></td>
-                    </tr>
+                            <tr>
+                                <td><input type="text" class="form-control" name="offence[]" value="<?php echo $co[$k];?>" /></td>
+                                <td><input type="text" class="form-control date-picker" name="date_of_sentence[]" value="<?php echo $cd[$k];?>" /></td>
+                                <td><input type="text" class="form-control" name="location[]" value="<?php echo $cl[$k];?>"/></td>
+                            </tr>
                         <?php
                     }
                     ?>
@@ -299,6 +292,7 @@
             <div class="clearfix"></div>
 <hr />
 
+<!--
 		<h3 class="col-md-12">
 			Mandatory use for all account holders
 		</h3>
@@ -326,41 +320,39 @@
     				</div>
                     
                     <input type="hidden" class="form-control" name="authorize_signature"/>
-                </div>
-                <div class="form-group col-md-12">
+            </div>
+            <div class="form-group col-md-12">
                     <label class="control-label col-md-3">Name(Please Print): </label>
                     <div class="col-md-9">
     					<input type="text" class="form-control" name="authorize_name" value="<?php echo $detail['consent']->authorize_name;?>"/>
     				</div>
-                </div>
-                <div class="col-md-12">
+            </div>
+            <div class="col-md-12">
                     <p>NOTICE: This form is made available to monthly account holders by NICT on behalf of the U.S. Department of Transportation, Federal Motor Carrier Safety Administration (FMCSA). Account holders are required by federal law to obtain an Applicant's written or electronic consent prior to accessing the Applicant's PSP report. Further, account holders are required by FMCSA to use the language provided in paragraphs 1-4 of this document to obtain an Applicant's consent. The language must be used in whole, exactly as provided. The language may be included with other consent forms or language at the discretion of the account holder, provided the four paragraphs remain intact and the language is unchanged.</p>
                     <p>LAST UPDATED 10/29/2012</p>
-                </div>
-                
+            </div>
+-->
                 <br />
 <strong>Attachments</strong>
 <p>&nbsp;</p>
 <?php
-if($_SERVER['SERVER_NAME']=='localhost')
-$initials = 'http://localhost';
-else
-$initials = 'http://isbmeereports.com';
-if($att)
-{
-    foreach($att as $a)
-    {
-        ?>
-        <img src="<?php echo $initials.$this->request->webroot;?>attachments/<?php echo $a->attach_doc;?>" /><br /><br />
-        <?php
+    $initials = 'http://isbmeereports.com';
+    if($_SERVER['SERVER_NAME']=='localhost') {
+        $initials = 'http://localhost';
     }
-}
+    if($att) {
+        foreach($att as $a) {
+            ?>
+            <img src="<?php echo $initials.$this->request->webroot;?>attachments/<?php echo $a->attach_doc;?>" /><br /><br />
+            <?php
+        }
+    }
 ?>
 <p>
-<strong>Signature of Driver</strong><br />
-<?php if(isset($detail['consent']) && $detail['consent']->criminal_signature_applicant){?><img src="<?php echo $this->request->webroot.'canvas/'.$detail['consent']->criminal_signature_applicant;?>" style="max-width: 100%;" /><?php }?>
+    <strong>Signature of Driver</strong><br />
+    <?php if(isset($detail['consent']) && $detail['consent']->criminal_signature_applicant){?><img src="<?php echo $this->request->webroot.'canvas/'.$detail['consent']->criminal_signature_applicant;?>" style="max-width: 100%;" /><?php }?>
 </p>
 <p>
-<strong>Signature of Company Witness</strong><br />
-<?php if(isset($detail['consent']) && $detail['consent']->signature_company_witness){?><img src="<?php echo $this->request->webroot.'canvas/'.$detail['consent']->signature_company_witness;?>" style="max-width: 100%;" /><?php }?>
+    <strong>Signature of Company Witness</strong><br />
+    <?php if(isset($detail['consent']) && $detail['consent']->signature_company_witness){?><img src="<?php echo $this->request->webroot.'canvas/'.$detail['consent']->signature_company_witness;?>" style="max-width: 100%;" /><?php }?>
 </p>
