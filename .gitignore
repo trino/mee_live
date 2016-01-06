@@ -31,13 +31,9 @@ $RECYCLE.BIN/
 # Thumbnails
 ._*
 
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
+# Files that might appear on external disk
 .Spotlight-V100
-.TemporaryItems
 .Trashes
-.VolumeIcon.icns
 
 # Directories potentially created on remote AFP share
 .AppleDB
@@ -45,3 +41,48 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+src/Controller/logs/**
+bin/**
+[Cc]onfig/**
+logs/**
+plugins/**
+tests/**
+tmp/**
+tmp/cache/**
+tmp/cache/models/**
+vendor/**
+webroot/subpages/soap/**
+webroot/attachments/**
+webroot/orders/**
+webroot/img/certificates/*.pdf
+webroot/img/jobs/**
+webroot/img/logos/**
+webroot/img/profile/**
+webroot/canvas/*.png
+webroot/canvas/*.jpg
+webroot/canvas/*.jpeg
+webroot/canvas/*.gif
+webroot/canvas/*.bmp
+webroot/order_submitted/*
+!empty
+*.tar.gz
+*.tar
+.idea/**
+*.log
+*.idea
+/vendor/**
+/config/app.php
+/tmp/**
+/logs/**
+*.xml
+.idea/misc.xml
+*.xml
+*.pdf
+myapp_cake_*
+tmp/cache/**
+tmp/debug_kit.sqlite
+webroot/royslog.txt
+src/Controller/logs/debug.log
+*.log
+webroot/img/clients/*.jpeg
+*.zip
