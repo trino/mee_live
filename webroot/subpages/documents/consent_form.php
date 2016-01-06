@@ -301,13 +301,10 @@
                         for ($k = 0; $k < 8; $k++) {
                             ?>
                             <tr>
-                                <td><input type="text" class="form-control" name="offence[]"
-                                           value="<?php echo $co[$k]; ?>"/>
+                                <td><input type="text" class="form-control" name="offence[]" value="<?php echo $co[$k]; ?>"/>
                                 </td>
-                                <td><input type="text" class="form-control date-picker" name="date_of_sentence[]"
-                                           value="<?php echo $cd[$k]; ?>"/></td>
-                                <td><input type="text" class="form-control" name="location[]"
-                                           value="<?php echo $cl[$k]; ?>"/></td>
+                                <td><input type="text" class="form-control date-picker" name="date_of_sentence[]" value="<?php echo $cd[$k]; ?>"/></td>
+                                <td><input type="text" class="form-control" name="location[]" value="<?php echo $cl[$k]; ?>"/></td>
                             </tr>
                         <?php
                         }
@@ -323,7 +320,7 @@
     <div class="clearfix"></div>
     <hr/>
 
-    <div class="form-group row">
+    <!--div class="form-group row">
         <h3 class="col-md-12">
             <?= $strings2["consent_f2"]; ?>
         </h3>
@@ -471,7 +468,7 @@
             </div>
             <?php }?>
         </div>
-        </div>
+    </div-->
 </form>
 
 
