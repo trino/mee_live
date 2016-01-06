@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2016 at 09:13 PM
+-- Generation Time: Jan 06, 2016 at 10:38 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `veritas3`
+-- Database: `mee_live`
 --
 
 -- --------------------------------------------------------
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `strings` (
 --
 
 INSERT INTO `strings` (`ID`, `Name`, `English`, `French`) VALUES
-(1, 'Date', '1450709733', '<-- This is used by the system to auto-update'),
+(1, 'Date', '1452111223', '<-- This is used by the system to auto-update'),
 (2, 'dashboard_affirmative', 'Yes', 'Oui'),
 (3, 'dashboard_negative', 'No', 'Non'),
 (4, 'dashboard_selectall', 'Select All', 'Tout sélectionner'),
@@ -552,7 +552,7 @@ INSERT INTO `strings` (`ID`, `Name`, `English`, `French`) VALUES
 (523, 'upload_uploadcvor', 'Upload CVOR', 'Ajouter IUVU'),
 (524, 'upload_uploadresu', 'Upload Resume', 'Déposez votre CV'),
 (525, 'upload_uploadcert', 'Upload Certifications', 'Ajouter Certifications'),
-(526, 'upload_step2', '<STRONG>Step %number%: </STRONG> Upload Abstract Consent Form (Above)', '<STRONG>Étape %number%: </STRONG> Télécharger Résumé formulaire de consentement (Ci-dessus)'),
+(526, 'upload_step2', '<STRONG>Step %number%: </STRONG> Upload Abstract/PSP Consent Form (Above)', '<STRONG>Étape %number%: </STRONG> Télécharger Résumé/PSP formulaire de consentement (Ci-dessus)'),
 (527, 'upload_step1', '<STRONG>Step %number%: </STRONG> Please download, fill out, and upload<BR>using the ''Browse'' button next to ''Driver''s Record Abstract''', '<STRONG>Étape %number%: </STRONG> S''il vous plaît télécharger, remplir, et de télécharger<BR>en utilisant le bouton ''Feuilleter'' à côté de ''la fiche résumé du conducteur'''),
 (528, 'orders_view', 'View Order', 'Voir Commander'),
 (529, 'orders_create', 'Create Order', 'Créer une commande'),
@@ -700,7 +700,7 @@ INSERT INTO `strings` (`ID`, `Name`, `English`, `French`) VALUES
 (673, 'forms_credssent', 'Credentials sent', 'Pouvoirs envoyés'),
 (679, 'email_profilecreated_variables', 'username, email, path, createdby, type, password, id', ''),
 (680, 'email_documentcreated_variables', 'site, email, company_name, username, id, path, profile_type, place, document_type', ''),
-(681, 'email_ordercompleted_variables', 'email, username, profile_type, company_name, for, html, path', ''),
+(681, 'email_ordercompleted_variables', 'email, username, profile_type, company_name, site, for, path, html', ''),
 (682, 'email_gfs_variables', 'email, path1, path2, site, username', ''),
 (683, 'disabled_newapplicant_subject', 'Application for Employment [DISABLED]', 'email_newapplicant_subject'),
 (684, 'disabled_newapplicant_message', 'A new applicant has applied for employment.<br><br>\nPlease click <a href="%path%" target="_blank">here</a> to view the form.<br><br>\nRegards,<br>\nThe MEE Team', 'email_newapplicant_message'),

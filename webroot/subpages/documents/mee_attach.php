@@ -8,6 +8,7 @@
     copy2globals($strings, array("forms_browse", "dashboard_delete"));
     $strings2 = CacheTranslations($language, array("upload_%"), $settings, False);
     copy2globals($strings2, array("upload_none"));
+    $Step = 1;
 ?>
 
 <form id="form_tab15">
@@ -29,8 +30,12 @@
 
         if($action == "View" && $controller == "documents") {
             $data = getdocumentinfo($did);
-            $DriverProvince =$data->reciever->driver_province;
+            $DriverProvince = $data->reciever->driver_province;
+            $Profile = $data->reciever;
+        } else {
+            $Profile = $Manager->get_profile($_GET["driver"]);
         }
+        $US_driving_exp = $Profile->us_driving_experience;
 
         function makeBrowseButton($ID, $Display, $Remove = true, $text=""){
             if(!$Display){$Display=' style="display: none;"';} else{ $Display="";}
@@ -57,6 +62,9 @@
                 if ($DriverProvince == "BC") {
                     $attachment["British Columbia Abstract Consent"] = "14.BC.pdf";
                 }
+            }
+            if($US_driving_exp){
+                $attachment["PSP Consent"] = "psp.pdf";
             }
         }
 
@@ -134,7 +142,7 @@
             return $files;
         }
 
-        function printfile($webroot, $cc, $file, $skip=false,$rem=''){
+        function printfile($webroot, $cc, $file, $skip=false,$rem='', $prepend=""){
             $path = $webroot . "attachments/" . $file->attachments;
             $realpath = getcwd() . "/attachments/" . $file->attachments;
             if (file_exists($realpath)) {//do not remove this check!
@@ -143,19 +151,17 @@
                 } else {
                     ?>
                     <div>
-                                    <span><a style="margin-bottom:5px;" href="javascript:void(0)"
-                                             class="btn btn-primary additional" id="mee_att_<?php echo $cc;?>"><?= $GLOBALS["forms_browse"]; ?></a>&nbsp;
-                                             <?php if(!$rem){?>
-                                          <a style="margin-bottom:5px;" class="btn btn-danger" href="javascript:void(0);"
-                                             onclick="$(this).parent().parent().remove();"><?= $GLOBALS["dashboard_delete"]; ?></a>
-                                             <?php }?>
-                                          <span class="uploaded nohide">
-                                                <a class="dl nohide"
-                                                   href="<?php echo $path?>"><?php echo printanattachment($file->attachments) ;?></a>
-                                          </span>
+                                    <span>
+                                        <a style="margin-bottom:5px;" href="javascript:void(0)" class="btn btn-primary additional" id="mee_att_<?php echo $cc;?>"><?= $GLOBALS["forms_browse"]; ?></a>&nbsp;
+                                        <?php if(!$rem){?>
+                                            <a style="margin-bottom:5px;" class="btn btn-danger" href="javascript:void(0);" onclick="$(this).parent().parent().remove();"><?= $GLOBALS["dashboard_delete"]; ?></a>
+                                        <?php }?>
+                                        <span class="uploaded nohide">
+                                            <?= $prepend; ?>
+                                            <a class="dl nohide" href="<?= $path?>"><?= printanattachment($file->attachments) ;?></a>
+                                        </span>
                                     </span>
-                        <input type="hidden" value="<?php echo $file->attachments;?>" name="mee_attachments[]"
-                               class="mee_att_<?php echo $cc;?>"/>
+                        <input type="hidden" value="<?= $file->attachments;?>" name="mee_attachments[]" class="mee_att_<?= $cc;?>"/>
                     </div>
                 <?php
                 }
@@ -215,7 +221,8 @@
                 $doit = true;
                 if (count($attachment) > 0) {
                     echo '<div class="form-group row"><div class="col-md-12">';
-                    echo '<label class="control-label col-md-4" align="right">' . $strings2["upload_step1"] . ': </label><div class="col-md-8">';
+                    echo '<label class="control-label col-md-4" align="right">' . str_replace("%number%", $Step, $strings2["upload_step1"]) . ': </label><div class="col-md-8">';
+                    $Step = $Step + 1;
                     foreach ($attachment as $name => $file) {//C:\wamp\www\veritas3-0\webroot\ http://localhost/veritas3-0/webroot/img/certificates/certificate71-1.pdf
                         echo '<A class="btn btn-info" DOWNLOAD="' . $name . '.pdf" HREF="' . $this->request->webroot . 'webroot/img/pdfs/' . $file . '">';
                         echo '<i class="fa fa-floppy-o"></i> ' . $name . ' </A> ';
@@ -232,22 +239,29 @@
             }
             echo '<div class="col-md-12">';
             if ($doit && (count($attachment) > 0) || $morecount>0) {
-            echo '<div class="col-md-4" align="right">' . $description . ': </div>';
+            echo '<div class="col-md-4" align="right">' . str_replace("%number%", $Step, $description) . ': </div>';
             echo '<div class="col-md-8 mee_more">';
             if(!isset($mee_more))
             $mee_more = false;
             $lprov = array('BC','QC','SK');
             $get_prov = $this->requestAction('/profiles/getDriverProv/'.$_GET['driver']);
-            if(($this->request->params['action'] == 'addorder' || $this->request->params['action'] == 'add') && !$mee_more && in_array($get_prov,$lprov)) {
-                makeBrowseButton(7, true, false, '<FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
+            if($this->request->params['action'] == 'addorder' || $this->request->params['action'] == 'add'){
+                if (!$mee_more && in_array($get_prov,$lprov)) {
+                    makeBrowseButton(7, true, false, 'Abstract <FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
+                }
+                if($US_driving_exp && !is_iterable($mee_more)){
+                    makeBrowseButton(20, true, false, 'PSP <FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
+                }
             }
             if($did  && in_array($get_prov,$lprov)){
                 $skip=true;
                 $morecount = $morecount-1;
+                $did8=false;
                 foreach($mee_more as $key => $file) {//id, mee_id, attachments
-                    //var_dump($file);
-                    if(printfile($this->request->webroot, 8, $file,'','norem')) {
-                        break;
+                    if(!$did8){
+                        $did8 = printfile($this->request->webroot, 8, $file,'','norem', "Abstract");
+                    } else {
+                        printfile($this->request->webroot, 20, $file,'','norem', "PSP");
                     }
                 }
                 
