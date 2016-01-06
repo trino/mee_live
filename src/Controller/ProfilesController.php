@@ -234,7 +234,17 @@
             
             $this->set('new_req',$reqs);
         }
-        
+
+        function changeExp($uid,$stat) {
+            $img = TableRegistry::get('profiles');
+            $query = $img->query();
+            $query->update()
+                ->set(['us_driving_experience'=>$stat])
+                ->where(['id' => $uid])
+                ->execute();
+            die();
+        }
+
         function sksort(&$array, $subkey="id", $sort_ascending=false) {
 
             if (count($array))
