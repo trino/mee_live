@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!-- saved from url=(0080)http://localhost/veritas3/debug_kit/toolbar/3db3913e-c957-4d2a-a050-3c8bcb3f10e6 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Debug Kit Toolbar</title>
+		<link rel="stylesheet" href="http://localhost/veritas3/debug_kit/css/reset.css">		<link rel="stylesheet" href="http://localhost/veritas3/debug_kit/css/toolbar.css">	<style type="text/css"></style></head>
+	<body>
+	<div id="panel-content-container">
+	<span id="panel-close" class="button-close">×</span>
+	<div id="panel-content">
+		<!-- content here -->
+	</div>
+</div>
+
+<ul id="toolbar" class="toolbar">
+		<li class="panel" data-id="15c75ba9-1a56-41f6-9316-31220211d673" style="display: none;">
+		<span class="panel-button">
+			Cache		</span>
+			</li>
+		<li class="panel" data-id="9b9bd5e7-d5bd-4924-a046-2fadb1274c91" style="display: none;">
+		<span class="panel-button">
+			Environment		</span>
+			</li>
+		<li class="panel" data-id="bca48da6-2132-48da-bfa9-0a7978c310cb" style="display: none;">
+		<span class="panel-button">
+			History		</span>
+			</li>
+		<li class="panel" data-id="fc61a791-b567-49ae-8de5-800d07b624eb" style="display: none;">
+		<span class="panel-button">
+			Include		</span>
+			</li>
+		<li class="panel" data-id="aadf004f-cbf8-4506-8fdb-e566f1532aed" style="display: none;">
+		<span class="panel-button">
+			Log		</span>
+				<span class="panel-summary">
+			0		</span>
+			</li>
+		<li class="panel" data-id="8e78cfea-cec7-4db8-a683-8392e8221d8f" style="display: none;">
+		<span class="panel-button">
+			Request		</span>
+			</li>
+		<li class="panel" data-id="ac9dfb35-37d5-4d60-bfe4-1b18ee0c7433" style="display: none;">
+		<span class="panel-button">
+			Session		</span>
+			</li>
+		<li class="panel" data-id="d8e4741b-c8a8-4b77-a8da-1da51567cf96" style="display: none;">
+		<span class="panel-button">
+			Sql Log		</span>
+				<span class="panel-summary">
+			33 - 44 ms		</span>
+			</li>
+		<li class="panel" data-id="c7a2d70e-511e-4e69-a516-1a6cbc5ce8f5" style="display: none;">
+		<span class="panel-button">
+			Timer		</span>
+				<span class="panel-summary">
+			0.42 s - 14.6 MB		</span>
+			</li>
+		<li class="panel" data-id="dde9eb96-0e78-4e9f-9f05-93e859db6e6a" style="display: none;">
+		<span class="panel-button">
+			Variables		</span>
+			</li>
+		<li id="panel-button">
+		<img src="cake.icon.png" alt="Debug Kit">	</li>
+</ul>
+	<div id="loader">
+		<img src="cake.icon.png" class="indicator" alt="">	</div>
+	
+	<script src="jquery.js"></script>	<script src="toolbar-app.js"></script>	<script>
+var baseUrl = "http://localhost/veritas3/";
+var toolbar;
+
+$(document).ready(function() {
+	toolbar = new Toolbar({
+		button: $('#toolbar'),
+		content: $('#panel-content-container'),
+		panelButtons: $('.panel'),
+		panelClose: $('#panel-close'),
+		keyboardScope : $(document),
+		currentRequest: '3db3913e-c957-4d2a-a050-3c8bcb3f10e6',
+		originalRequest: '3db3913e-c957-4d2a-a050-3c8bcb3f10e6'
+	});
+
+	toolbar.initialize();
+
+});
+</script>
+
+</body></html>
