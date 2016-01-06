@@ -442,24 +442,23 @@ var FormWizard = function () {
                         } else{
                             if(form_name == 'consent') {
                                 if($('#sig2 .touched').val()!='1' && $('#sig2 .touched_edit2').val()!='1') {
-                                    alert(SaveSig);
+                                    alert(SaveSig + " (sig2)");
                                     $('html,body').animate({scrollTop: $('#sig2').offset().top},
                                     'slow');
                                     return false;
                                 } else if($('#sig4 .touched').val()!='1' && $('#sig4 .touched_edit4').val()!='1') {
-                                    alert(SaveSig);
+                                    alert(SaveSig + " (sig4)");
                                     $('html,body').animate({scrollTop: $('#sig4').offset().top}, 'slow');
                                     return false;
-                                }
-                                else
-                                if($('#sig1 .touched').val()!='1' && $('#sig1 .touched_edit1').val()!='1') {
-                                    alert(SaveSig);
+                                 /* REMOVED PSP SIGNATURES } else if($('#sig1 .touched').val()!='1' && $('#sig1 .touched_edit1').val()!='1') {
+                                    alert(SaveSig + " (sig1)");
                                     $('html,body').animate({scrollTop: $('#sig1').offset().top},'slow');
                                     return false;
                                 } else if($('#sig3 .touched').val()!='1' && $('#sig3 .touched_edit3').val()!='1') {
-                                    alert(SaveSig);
+                                    alert(SaveSig + " (sig3)");
                                     $('html,body').animate({scrollTop: $('#sig3').offset().top},  'slow');
                                     return false;
+                                */
                                 } else {
                                     handleTitle(tab, navigation, index);
                                 }

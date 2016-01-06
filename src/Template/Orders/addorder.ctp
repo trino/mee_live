@@ -1723,32 +1723,40 @@ printCSS($this);
             if(numb == '5') {
                $('#criminal_signature_applicant2').parent().find('.touched').val(1); 
             }
+            /*
             if(numb == '4') {
                 $('#signature_company_witness').parent().find('.touched').val(1);
             }
             if(numb == '3') {
                 $('#criminal_signature_applicant').parent().find('.touched').val(1);
             }
+            */
             if(numb == '6') {
                 $('#signature_company_witness2').parent().find('.touched').val(1);
             }
         }
         $("#test" + numb).data("jqScribble").save(function (imageData) {
-            if ((numb == '8' && $('#gfs_signature').parent().find('.touched').val() == 1) || (numb == '1' && $('#recruiter_signature').parent().find('.touched').val() == 1) || (numb == '3' && $('#criminal_signature_applicant').parent().find('.touched').val() == 1) || (numb == '4' && $('#signature_company_witness').parent().find('.touched').val() == 1) || (numb == '5' && $('#criminal_signature_applicant2').parent().find('.touched').val() == 1) || (numb == '6' && $('#signature_company_witness2').parent().find('.touched').val() == 1)) {
+            if ((numb == '8' && $('#gfs_signature').parent().find('.touched').val() == 1) ||
+                (numb == '1' && $('#recruiter_signature').parent().find('.touched').val() == 1) ||
+                //(numb == '3' && $('#criminal_signature_applicant').parent().find('.touched').val() == 1) ||
+                //(numb == '4' && $('#signature_company_witness').parent().find('.touched').val() == 1) ||
+                (numb == '5' && $('#criminal_signature_applicant2').parent().find('.touched').val() == 1) ||
+                (numb == '6' && $('#signature_company_witness2').parent().find('.touched').val() == 1)) {
                 $.post('<?php echo $this->request->webroot; ?>canvas/image_save.php', {imagedata: imageData}, function (response) {
                     if(response=='' && (numb=='3' || numb=='5' || numb=='4' || numb=='6'))
                     {
-                        alert('<?= addslashes($strings["addorder_problem"]); ?>');
+                        alert('<?= addslashes($strings["addorder_problem"]); ?> (0x02)');
                     }
                     if (numb == '1') {
                         $('#recruiter_signature').val(response);
                     }
-                    if (numb == '3') {
+                    /*if (numb == '3') {
                         $('#criminal_signature_applicant').val(response);
                     }
                     if (numb == '4') {
                         $('#signature_company_witness').val(response);
                     }
+                    */
                     if (numb == '5') {
                         $('#criminal_signature_applicant2').val(response);
                     }
@@ -1866,13 +1874,12 @@ printCSS($this);
                         if(resp=='1') {
                             $.ajax({
                                 url: '<?php echo $this->request->webroot;?>orders/createPdf/' + $('#did').val(),
-                                success:function()
-                                {
+                                success:function() {
                                     $('#loading5').hide();
                                 }
                             });
                         } else {
-                            alert('<?= addslashes($strings["addorder_problem"]); ?>');
+                            alert('<?= addslashes($strings["addorder_problem"]); ?> (0x01) ' + resp);
                             $('#loading5').hide();
 
                         }

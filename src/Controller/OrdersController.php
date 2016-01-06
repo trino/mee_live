@@ -1486,7 +1486,8 @@ $JSON = $this->Manager->order_to_email($orderid);
         public function checkSignature($did) {
             $ord = TableRegistry::get('consent_form')->find()->where(['order_id'=>$did])->first();
             $check = '0';
-            if($ord->criminal_signature_applicant && $ord->criminal_signature_applicant2 && $ord->signature_company_witness2 && $ord->signature_company_witness) {
+            //$ord->criminal_signature_applicant && $ord->signature_company_witness
+            if($ord->criminal_signature_applicant2 && $ord->signature_company_witness2) {
                 $check = '1';
             }
             echo $check;

@@ -414,7 +414,7 @@
                 <div class="mee_more">
                     <?php
                         $cc = 8;
-                        if(isset($mee_more)) {
+                        if(isset($mee_more) && is_iterable($mee_more)) {
                             foreach($mee_more as $key => $file) {//id, mee_id, attachments
                                 if( printfile($this->request->webroot, $cc, $file, $skip)){
                                     $skip=false;

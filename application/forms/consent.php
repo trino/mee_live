@@ -10,7 +10,7 @@ if($newsigmethod){include("signature.php");}
         $("#test" + numb).data("jqScribble").save(function (imageData) {
             $.post('<?php echo $webroot; ?>canvas/image_save.php', {imagedata: imageData}, function (response) {
                 if(response=='') {
-                    alert('<?= addslashes($strings["addorder_problem"]); ?>');
+                    alert('<?= addslashes($strings["addorder_problem"]); ?> (' + numb + ')');
                 }
                 switch (numb) {
                     case '1004':
