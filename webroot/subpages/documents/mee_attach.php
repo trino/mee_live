@@ -143,8 +143,9 @@
         }
 
         function printfile($webroot, $cc, $file, $skip=false,$rem='', $prepend=""){
-            if(isset($GLOBALS["files"][$file->attachments])){return false;}
+            if(!is_object($file) || !$file->attachments || isset($GLOBALS["files"][$file->attachments])){return false;}
             $GLOBALS["files"][$file->attachments]=true;
+
             $path = $webroot . "attachments/" . $file->attachments;
             $realpath = getcwd() . "/attachments/" . $file->attachments;
             if (file_exists($realpath)) {//do not remove this check!
@@ -153,16 +154,15 @@
                 } else {
                     ?>
                     <div>
-                                    <span>
-                                        <a style="margin-bottom:5px;" href="javascript:void(0)" class="btn btn-primary additional" id="mee_att_<?php echo $cc;?>"><?= $GLOBALS["forms_browse"]; ?></a>&nbsp;
-                                        <?php if(!$rem){?>
-                                            <a style="margin-bottom:5px;" class="btn btn-danger" href="javascript:void(0);" onclick="$(this).parent().parent().remove();"><?= $GLOBALS["dashboard_delete"]; ?></a>
-                                        <?php }?>
-                                        <span class="uploaded nohide">
-                                            <?= $prepend; ?>
-                                            <a class="dl nohide" href="<?= $path?>"><?= printanattachment($file->attachments) ;?></a>
-                                        </span>
-                                    </span>
+                        <span>
+                            <a style="margin-bottom:5px;" href="javascript:void(0)" class="btn btn-primary additional" id="mee_att_<?= $cc . '">' . $GLOBALS["forms_browse"]; ?></a>&nbsp;
+                            <?php if(!$rem){?>
+                                <a style="margin-bottom:5px;" class="btn btn-danger" href="javascript:void(0);" onclick="$(this).parent().parent().remove();"><?= $GLOBALS["dashboard_delete"]; ?></a>
+                            <?php }?>
+                            <span class="uploaded nohide">
+                                <?= $prepend . '<a class="dl nohide" href="' . $path . '">' . printanattachment($file->attachments) ;?></a>
+                            </span>
+                        </span>
                         <input type="hidden" value="<?= $file->attachments;?>" name="mee_attachments[]" class="mee_att_<?= $cc;?>"/>
                     </div>
                 <?php
@@ -240,39 +240,45 @@
                 echo "<div>";
             }
             echo '<div class="col-md-12">';
-            if ($doit && (count($attachment) > 0) || $morecount>0) {
-            echo '<div class="col-md-4" align="right">' . str_replace("%number%", $Step, $description) . ': </div>';
-            echo '<div class="col-md-8 mee_more">';
-            if(!isset($mee_more))
-            $mee_more = false;
-            $lprov = array('BC','QC','SK');
-            $get_prov = $this->requestAction('/profiles/getDriverProv/'.$_GET['driver']);
-            if($this->request->params['action'] == 'addorder' || $this->request->params['action'] == 'add'){
-                if (!$mee_more && in_array($get_prov,$lprov)) {
-                    makeBrowseButton(7, true, false, 'Abstract <FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
-                }
-                if($US_driving_exp && !is_iterable($mee_more)){
-                    makeBrowseButton(20, true, false, 'PSP <FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
-                }
-            }
-            if($did  && in_array($get_prov,$lprov)){
-                $skip=true;
-                $morecount = $morecount-1;
-                $did8=0;
-                foreach($mee_more as $key => $file) {//id, mee_id, attachments
-                    if($did8 == 0){
-                        if(printfile($this->request->webroot, 8, $file,'','norem', "Abstract")){$did8 = 1;}
-                    } else if($did8 == 1){
-                        if (printfile($this->request->webroot, 20, $file,'','norem', "PSP")){$did8=2;}
-                    }
-                }
-                
-            } 
-        ?>
+                            if ($doit && (count($attachment) > 0) || $morecount>0) {
+                            echo '<div class="col-md-4" align="right">' . str_replace("%number%", $Step, $description) . ': </div>';
+                            echo '<div class="col-md-8 mee_more">';
+                            if(!isset($mee_more))
+                            $mee_more = false;
+                            $lprov = array('BC','QC','SK');
+                            $get_prov = $this->requestAction('/profiles/getDriverProv/'.$_GET['driver']);
+                            if($this->request->params['action'] == 'addorder' || $this->request->params['action'] == 'add'){
+                                if (!$mee_more && in_array($get_prov,$lprov)) {
+                                    makeBrowseButton(7, true, false, 'Abstract <FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
+                                }
+                                if($US_driving_exp && !is_iterable($mee_more)){
+                                    makeBrowseButton(20, true, false, 'PSP <FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
+                                }
+                            }else if($US_driving_exp){
+                                //makeBrowseButton(20, true, false, 'PSP <FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
+                            }
+
+                            if($did  && in_array($get_prov,$lprov)){
+                                $skip=true;
+                                $morecount = $morecount-1;
+                                $did8=0;
+                                foreach($mee_more as $key => $file) {//id, mee_id, attachments
+                                    if($did8 == 0){
+                                        if(printfile($this->request->webroot, 8, $file,'','norem', "Abstract")){$did8 = 1;}
+                                    } else if($did8 == 1){
+
+                                    }
+                                }
+
+                            }
+
+                            if($file == "psp.pdf") {$file = last($mee_more);}
+                            printfile($this->request->webroot, 20, $file,'','norem', "PSP ");
+                        ?>
 
 
-    </div>
-<?php } ?>
+                    </div>
+                <?php } ?>
                 <div class="clearfix"></div>
                 <!--p>&nbsp;</p>
                 <div class="col-md-4">&nbsp;</div><div class="col-md-8"><a href="javascript:void(0);" id="mee_att_more" class="btn btn-success"><?= $strings["forms_addmore"]; ?></a></div-->
@@ -421,11 +427,14 @@
     <?php }
         nodocs($docsprinted);
 
-
+        $countrequired = 0;
+        if($US_driving_exp){
+            $countrequired=1;
+        }
     ?>
     <div class="form-group row">
         <div class="col-md-12">
-            <div class="col-md-4" align="right"><?php if($morecount>0 || $action =="Addorder" ){ echo "Additional Attachment(s): ";} ?></div>
+            <div class="col-md-4" align="right"><?php if($morecount>$countrequired || $action =="Addorder" ){ echo "Additional Attachment(s): ";} ?></div>
             <div class="col-md-8">
                 <div class="mee_more">
                     <?php

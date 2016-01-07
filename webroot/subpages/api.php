@@ -456,6 +456,13 @@ function getprovinces($Language = "English", $IncludeUSA = False){
     return $provinces;
 }
 
+function last($iterable){
+    foreach($iterable as $Item){
+
+    }
+    return $Item;
+}
+
 function includejavascript($strings = "", $settings = ""){
     $language =  $GLOBALS["language"];
     $variables = array("SaveAndContinue" => "addorder_savecontinue", "SaveAsDraft" => "forms_savedraft", "Submit" => "forms_submit", "Select" => "forms_select", "SelectOne" => "forms_selectone", "SignPlease" => "forms_signplease", "MissingID" => "forms_missingid", "MissingAbstract" => "forms_missingabstract", "FillAll" => "forms_fillall", "SaveSig" => "forms_savesig", "Success" => "orders_success", "Clear" => "forms_clear", "ConfDelete" => "dashboard_confirmdelete", "FillAll" => "forms_fillall", "SelOne" => "forms_selectone");
