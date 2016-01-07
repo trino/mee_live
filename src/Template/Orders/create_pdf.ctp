@@ -300,7 +300,8 @@ $hereby = "<p><br/>I hereby consent to the search of the following:</p>
  <p>I have read the above Notice Regarding Background Reports provided to me by Prospective Employer and I understand that if I sign this consent form, Prospective Employer may obtain a report of my crash and inspection history. I hereby authorize Prospective Employer and its employees, authorized agents, and/or affiliates to obtain the information authorized above.
  <br /><br/>"; */
                 $pdf->writeHTMLCell(0, 0, '', '', $declare, 0, 1, 0, true, '', true);
-                
+
+                /*
                 $pdf->Cell(80, 5, 'Date');
                 $pdf->TextField('authorize_date', 50, 5,array(),array('v'=>$detail['consent']->authorize_date, 'dv'=>$detail['consent']->authorize_date));
                 $pdf->Ln(6);
@@ -308,7 +309,7 @@ $hereby = "<p><br/>I hereby consent to the search of the following:</p>
                 $pdf->Cell(80, 5, 'Name(Please Print)');
                 $pdf->TextField('authorize_name', 50, 5,array(),array('v'=>$detail['consent']->authorize_name, 'dv'=>$detail['consent']->authorize_name));
                 $pdf->Ln(6);
-
+                */
                 $attach="";
                 /* $attach = "
                 <p><br/>NOTICE: This form is made available to monthly account holders by NICT on behalf of the U.S. Department of Transportation, Federal Motor Carrier Safety Administration (FMCSA). Account holders are required by federal law to obtain an Applicant's written or electronic consent prior to accessing the Applicant's PSP report. Further, account holders are required by FMCSA to use the language provided in paragraphs 1-4 of this document to obtain an Applicant's consent. The language must be used in whole, exactly as provided. The language may be included with other consent forms or language at the discretion of the account holder, provided the four paragraphs remain intact and the language is unchanged.</p>
