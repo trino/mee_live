@@ -457,10 +457,10 @@ function getprovinces($Language = "English", $IncludeUSA = False){
 }
 
 function last($iterable){
-    foreach($iterable as $Item){
-
+    if(is_iterable($iterable)){
+        foreach($iterable as $Item){}
+        return $Item;
     }
-    return $Item;
 }
 
 function includejavascript($strings = "", $settings = ""){
