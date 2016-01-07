@@ -252,7 +252,7 @@
                                     makeBrowseButton(7, true, false, 'Abstract <FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
                                 }
                                 if($US_driving_exp && !is_iterable($mee_more)){
-                                    makeBrowseButton(20, true, false, 'PSP <FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
+                                    makeBrowseButton(20, true, false, '<FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
                                 }
                             }else if($US_driving_exp){
                                 //makeBrowseButton(20, true, false, 'PSP <FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
