@@ -266,7 +266,7 @@
     </div>
 </div>
 
-<div class="portlet box blue ">
+<!--div class="portlet box blue ">
 	<div class="portlet-title">
 		<div class="caption">
 			Mandatory use for all account holders
@@ -340,7 +340,7 @@
             </div>
 
     </div>
-</div>
+</div-->
 
 
 

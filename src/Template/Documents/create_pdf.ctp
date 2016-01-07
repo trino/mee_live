@@ -290,7 +290,7 @@ $hereby = "<p><br/>I hereby consent to the search of the following:</p>
                 }
                 
                 $declare = $declare.'</table>';
-                $declare = $declare."<p>
+                /*$declare = $declare."<p>
                 <strong>Mandatory use for all account holders</strong>
                 <br/>
                 <strong>Important Notice Regarding Background Reports From The PSP Online Service</strong>
@@ -307,7 +307,7 @@ $hereby = "<p><br/>I hereby consent to the search of the following:</p>
                 <p>3.&nbsp;&nbsp;I further understand that neither the Prospective Employer nor the FMCSA contractor supplying the crash and safety information has the capability to correct any safety data that appears to be incorrect. I understand I may challenge the accuracy of the data by submitting a request to https://dataqs.fmcsa.dot.gov. If I am challenging crash or inspection information reported by a State, FMCSA cannot change or correct this data. I understand my request will be forwarded by the DataQs system to the appropriate State for adjudication.</p>
                 <p>4.&nbsp;&nbsp;Please note: Any crash or inspection in which you were involved will display on your PSP report. Since the PSP report does not report, or assign, or imply fault, it will include all Commercial Motor Vehicle (CMV) crashes where you were a driver or co-driver and where those crashes were reported to FMCSA, regardless of fault. Similarly, all inspections, with or without violations, appear on the PSP report. State citations associated with FMCSR violations that have been adjudicated by a court of law will also appear, and remain, on a PSP report.</p>
                 <p>I have read the above Notice Regarding Background Reports provided to me by Prospective Employer and I understand that if I sign this consent form, Prospective Employer may obtain a report of my crash and inspection history. I hereby authorize Prospective Employer and its employees, authorized agents, and/or affiliates to obtain the information authorized above.
-                <br /><br/>";
+                <br /><br/>"; */
                 $pdf->writeHTMLCell(0, 0, '', '', $declare, 0, 1, 0, true, '', true);
                 
                 $pdf->Cell(80, 5, 'Date');
