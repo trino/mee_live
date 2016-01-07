@@ -254,7 +254,7 @@
                                 if($US_driving_exp && !is_iterable($mee_more)){
                                     makeBrowseButton(20, true, false, '<FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
                                 }
-                            }else if($US_driving_exp){
+                            }else{
                                 //makeBrowseButton(20, true, false, 'PSP <FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
                             }
 
@@ -271,9 +271,10 @@
                                 }
 
                             }
-
-                            if($file == "psp.pdf") {$file = last($mee_more);}
-                            printfile($this->request->webroot, 20, $file,'','norem');
+                            if($US_driving_exp) {
+                                if ($file == "psp.pdf") {$file = last($mee_more);}
+                                printfile($this->request->webroot, 20, $file, '', 'norem');
+                            }
                         ?>
 
 
