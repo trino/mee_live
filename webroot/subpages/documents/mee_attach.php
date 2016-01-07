@@ -143,6 +143,8 @@
         }
 
         function printfile($webroot, $cc, $file, $skip=false,$rem='', $prepend=""){
+            if(isset($GLOBALS["files"][$file->attachments])){return false;}
+            $GLOBALS["files"][$file->attachments]=true;
             $path = $webroot . "attachments/" . $file->attachments;
             $realpath = getcwd() . "/attachments/" . $file->attachments;
             if (file_exists($realpath)) {//do not remove this check!
@@ -256,12 +258,12 @@
             if($did  && in_array($get_prov,$lprov)){
                 $skip=true;
                 $morecount = $morecount-1;
-                $did8=false;
+                $did8=0;
                 foreach($mee_more as $key => $file) {//id, mee_id, attachments
-                    if(!$did8){
-                        $did8 = printfile($this->request->webroot, 8, $file,'','norem', "Abstract");
-                    } else {
-                        printfile($this->request->webroot, 20, $file,'','norem', "PSP");
+                    if($did8 == 0){
+                        if(printfile($this->request->webroot, 8, $file,'','norem', "Abstract")){$did8 = 1;}
+                    } else if($did8 == 1){
+                        if (printfile($this->request->webroot, 20, $file,'','norem', "PSP")){$did8=2;}
                     }
                 }
                 
