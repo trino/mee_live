@@ -63,8 +63,10 @@
                     $attachment["British Columbia Abstract Consent"] = "14.BC.pdf";
                 }
             }
-            if($US_driving_exp){
+            if($US_driving_exp && in_array("77", $forms)){
                 $attachment["PSP Consent"] = "psp.pdf";
+            } else {
+                $US_driving_exp = false;
             }
         }
 
@@ -271,7 +273,7 @@
                                 }
 
                             }
-                            if($US_driving_exp) {
+                            if($US_driving_exp && count($attachment) >1) {
                                 if ($file == "psp.pdf") {$file = last($mee_more);}
                                 printfile($this->request->webroot, 20, $file, '', 'norem');
                             }
