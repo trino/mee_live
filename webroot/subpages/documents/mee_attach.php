@@ -273,7 +273,7 @@
                             }
 
                             if($file == "psp.pdf") {$file = last($mee_more);}
-                            printfile($this->request->webroot, 20, $file,'','norem', "PSP ");
+                            printfile($this->request->webroot, 20, $file,'','norem');
                         ?>
 
 
