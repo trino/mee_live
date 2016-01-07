@@ -308,13 +308,14 @@ $hereby = "<p><br/>I hereby consent to the search of the following:</p>
                 $pdf->Cell(80, 5, 'Name(Please Print)');
                 $pdf->TextField('authorize_name', 50, 5,array(),array('v'=>$detail['consent']->authorize_name, 'dv'=>$detail['consent']->authorize_name));
                 $pdf->Ln(6);
-                
-                $attach = "
+
+                $attach="";
+                /* $attach = "
                 <p><br/>NOTICE: This form is made available to monthly account holders by NICT on behalf of the U.S. Department of Transportation, Federal Motor Carrier Safety Administration (FMCSA). Account holders are required by federal law to obtain an Applicant's written or electronic consent prior to accessing the Applicant's PSP report. Further, account holders are required by FMCSA to use the language provided in paragraphs 1-4 of this document to obtain an Applicant's consent. The language must be used in whole, exactly as provided. The language may be included with other consent forms or language at the discretion of the account holder, provided the four paragraphs remain intact and the language is unchanged.</p>
                     <p>LAST UPDATED 10/29/2012</p>
                 <br/><br/><strong>Attachments</strong>
                 <br/>
-                ";
+                ";*/
                 
                 
                 //$initials = $this->requestAction('/pages/getBase');
@@ -341,7 +342,8 @@ $hereby = "<p><br/>I hereby consent to the search of the following:</p>
                         
                     }
                 }
-                 
+
+ /*
                 $attach = $attach."<br/><br/><p>
                             <strong>Signature of Driver</strong><br />";
                 if(isset($detail['consent']) && $detail['consent']->criminal_signature_applicant){
@@ -353,7 +355,7 @@ $hereby = "<p><br/>I hereby consent to the search of the following:</p>
                 if(isset($detail['consent']) && $detail['consent']->signature_company_witness){
                     $attach = $attach."<img src=\"".$initials.$this->request->webroot.'canvas/'.$detail['consent']->signature_company_witness."\" style=\"max-width: 100%;\" /><br/>";
                       }      
-                
+   */
     $pdf->writeHTMLCell(0, 0, '', '', $attach, 0, 1, 0, true, '', true);
 
 ob_end_clean();

@@ -305,7 +305,8 @@ $hereby = "<p><br/>I hereby consent to the search of the following:</p>
                 <p>I have read the above Notice Regarding Background Reports provided to me by Prospective Employer and I understand that if I sign this consent form, Prospective Employer may obtain a report of my crash and inspection history. I hereby authorize Prospective Employer and its employees, authorized agents, and/or affiliates to obtain the information authorized above.
                 <br /><br/>"; */
                 $pdf->writeHTMLCell(0, 0, '', '', $declare, 0, 1, 0, true, '', true);
-                
+
+ /*
                 $pdf->Cell(80, 5, 'Date');
                 $pdf->TextField('authorize_date', 50, 5,array(),array('v'=>$detail['consent']->authorize_date, 'dv'=>$detail['consent']->authorize_date));
                 $pdf->Ln(6);
@@ -319,13 +320,13 @@ $hereby = "<p><br/>I hereby consent to the search of the following:</p>
                     <p>LAST UPDATED 10/29/2012</p>
                 <br/><br/><strong>Attachments</strong>
                 <br/>
-                ";
+                "; */
                 
                 
                 //$initials = $this->requestAction('/pages/getBase');
-                
-                
-                
+
+
+ $attach ="";
                 if($att)
                 {
                    $doc_ext = array('pdf',
@@ -352,7 +353,8 @@ $hereby = "<p><br/>I hereby consent to the search of the following:</p>
                     }
                     
                 }
-                 
+
+ /*
                 $attach = $attach."<br/><br/><p>
                             <strong>Signature of Driver</strong><br />";
                 if(isset($detail['consent']) && $detail['consent']->criminal_signature_applicant){
@@ -363,7 +365,7 @@ $hereby = "<p><br/>I hereby consent to the search of the following:</p>
                 if(isset($detail['consent']) && $detail['consent']->signature_company_witness){
                     $attach = $attach."<img src=\"".$initials.$this->request->webroot.'canvas/'.$detail['consent']->signature_company_witness."\" style=\"max-width: 100%;\" /><br/>";
                       }      
-                
+   */
     $pdf->writeHTMLCell(0, 0, '', '', $attach, 0, 1, 0, true, '', true);
 
     ob_end_clean();

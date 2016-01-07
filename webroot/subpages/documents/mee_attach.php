@@ -264,7 +264,7 @@
                                 $did8=0;
                                 foreach($mee_more as $key => $file) {//id, mee_id, attachments
                                     if($did8 == 0){
-                                        if(printfile($this->request->webroot, 8, $file,'','norem', "Abstract")){$did8 = 1;}
+                                        if(printfile($this->request->webroot, 8, $file,'','norem')){$did8 = 1;}
                                     } else if($did8 == 1){
 
                                     }
