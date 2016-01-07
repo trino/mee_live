@@ -190,19 +190,7 @@ $hereby = "<p><br/>I hereby consent to the search of the following:</p>
      
      
         
-            Applicant's Signature- by signing this form you agree and consent to the terms and release of information listed on this form: ";
-            $hereby = $hereby."<br/><br/><p>
-                            <strong>Signature of Driver</strong><br />";
-                if(isset($detail['consent']) && $detail['consent']->criminal_signature_applicant2){
-                 //   echo $initials.$this->request->webroot.'canvas/'.$detail['consent']->criminal_signature_applicant2;
-                    $hereby = $hereby."<img src=\"".$initials.$this->request->webroot.'canvas/'.$detail['consent']->criminal_signature_applicant2."\" style=\"max-width: 100%;\" />";
-                    }
-                $hereby = $hereby."<p>
-                            <strong>Signature of Company Witness</strong><br />";
-                if(isset($detail['consent']) && $detail['consent']->signature_company_witness2){
-                  //  echo $initials.$this->request->webroot.'canvas/'.$detail['consent']->signature_company_witness2;
-                    $hereby = $hereby."<img src=\"".$initials.$this->request->webroot.'canvas/'.$detail['consent']->signature_company_witness2."\" style=\"max-width: 100%;\" /><br/>";
-                      }      
+            Applicant's Signature- by signing this form you agree and consent to the terms and release of information listed on this form: <br/><br/><p>";
                 
    // $pdf->writeHTMLCell(0, 0, '', '', $attach, 0, 1, 0, true, '', true);
             $pdf->writeHTMLCell(0, 0, '', '', $hereby, 0, 1, 0, true, '', true);
@@ -279,34 +267,38 @@ $hereby = "<p><br/>I hereby consent to the search of the following:</p>
                 ";
                 
                 //var_dump($cri);die();
-                if($cri)
-                {
-                    foreach($cri as $criminal)
-                    {
-                        
+                if($cri) {
+                    foreach($cri as $criminal) {
                         $declare = $declare.'<tr><td>'.$criminal->offence.'</td><td>'.$criminal->date_of_sentence.'</td><td>'.$criminal->location.'</td></tr>';
-                       
                     }                    
                 }
-                $declare = $declare.'</table>';
-                /* $declare = $declare."<p>
-                <strong>Mandatory use for all account holders</strong>
-                <br/>
-                <strong>Important Notice Regarding Background Reports From The PSP Online Service</strong>
-                </p>
-                <p>1.&nbsp;&nbsp;In connection with your application for employment with <strong>".$detail['consent']->psp_employer."</strong> (\"Prospective Employer\"), Prospective Employer,</div><br /><br /> its employees, agents or contractors may obtain one or more reports regarding your driving, and safety inspection history from the Federal Motor Carrier Safety Administration (FMCSA).</p>
-                <p>When the application for employment is submitted in person, if the Prospective Employer uses any information it obtains from FMCSA in a decision to not hire you or to make any other adverse employment decision regarding you, the Prospective Employer will provide you with a copy of the report upon which its decision was based and a written summary of your rights under the Fair Credit Reporting Act before taking any final adverse action. If any final adverse action is taken against you based upon your driving history or safety report, the Prospective Employer will notify you that the action has been taken and that the action was based in part or in whole on this report.</p>
-                <p>When the application for employment is submitted by mail, telephone, computer, or other similar means, if the Prospective Employer uses any information it obtains from FMCSA in a decision to not hire you or to make any other adverse employment decision regarding you, the Prospective Employer must provide you within three business days of taking adverse action oral, written or electronic notification: that adverse action has been taken based in whole or in part on information obtained  from FMCSA; the name, address, and the toll free telephone number of FMCSA; that the FMCSA did not make the decision to take the adverse action and is unable to provide you the specific reasons why the adverse action was taken; and that you may, upon providing proper identification, request a free copy of the report and may dispute with the FMCSA the accuracy or completeness of any information or report. If you request a copy of a driver record from the Prospective Employer who procured the report, then, within 3 business days of receiving your request, together with proper identification, the Prospective Employer must send or provide to you a copy of your report and a summary of your rights under the Fair Credit Reporting Act.</p>
-                <p>The Prospective Employer cannot obtain background reports from FMCSA unless you consent in writing.</p>
-                <p>If you agree that the Prospective Employer may obtain such background reports, please read the following and sign below:</p>
-                
-                <br/>
-                <p>2.&nbsp;&nbsp;I authorize <strong>".$detail['consent']->authorize_name_hereby."</strong> (\"Prospective Employer\") to access the FMCSA Pre-Employment Screening Program PSP</div></p><br /><br />
-                <p>system to seek information regarding my commercial driving safety record and information regarding my safety inspection history. I understand that I am consenting to the release of safety performance information including crash data from the previous five (5) years and inspection history from the previous three (3) years. I understand and acknowledge that this release of information may assist the Prospective Employer to make a determination regarding my suitability as an employee.</p>
-                <p>3.&nbsp;&nbsp;I further understand that neither the Prospective Employer nor the FMCSA contractor supplying the crash and safety information has the capability to correct any safety data that appears to be incorrect. I understand I may challenge the accuracy of the data by submitting a request to https://dataqs.fmcsa.dot.gov. If I am challenging crash or inspection information reported by a State, FMCSA cannot change or correct this data. I understand my request will be forwarded by the DataQs system to the appropriate State for adjudication.</p>
-                <p>4.&nbsp;&nbsp;Please note: Any crash or inspection in which you were involved will display on your PSP report. Since the PSP report does not report, or assign, or imply fault, it will include all Commercial Motor Vehicle (CMV) crashes where you were a driver or co-driver and where those crashes were reported to FMCSA, regardless of fault. Similarly, all inspections, with or without violations, appear on the PSP report. State citations associated with FMCSR violations that have been adjudicated by a court of law will also appear, and remain, on a PSP report.</p>
-                <p>I have read the above Notice Regarding Background Reports provided to me by Prospective Employer and I understand that if I sign this consent form, Prospective Employer may obtain a report of my crash and inspection history. I hereby authorize Prospective Employer and its employees, authorized agents, and/or affiliates to obtain the information authorized above.
-                <br /><br/>"; */
+                 $declare .= "</table>  Applicant's Signature- by signing this form you agree and consent to the terms and release of information listed on this form: ";
+                 $declare .= "<br/><br/><p><strong>Signature of Driver</strong><br />";
+                 if(isset($detail['consent']) && $detail['consent']->criminal_signature_applicant2){
+                     $declare .= "<img src=\"" . $initials.$this->request->webroot . 'canvas/' . $detail['consent']->criminal_signature_applicant2 . "\" style=\"max-width: 100%;\" />";
+                 }
+                 $declare .= "<p><strong>Signature of Company Witness</strong><br />";
+                 if(isset($detail['consent']) && $detail['consent']->signature_company_witness2){
+                     $declare .= "<img src=\"" . $initials.$this->request->webroot . 'canvas/' . $detail['consent']->signature_company_witness2 . "\" style=\"max-width: 100%;\" /><br/>";
+                 }
+ /* $declare = $declare."<p>
+ <strong>Mandatory use for all account holders</strong>
+ <br/>
+ <strong>Important Notice Regarding Background Reports From The PSP Online Service</strong>
+ </p>
+ <p>1.&nbsp;&nbsp;In connection with your application for employment with <strong>".$detail['consent']->psp_employer."</strong> (\"Prospective Employer\"), Prospective Employer,</div><br /><br /> its employees, agents or contractors may obtain one or more reports regarding your driving, and safety inspection history from the Federal Motor Carrier Safety Administration (FMCSA).</p>
+ <p>When the application for employment is submitted in person, if the Prospective Employer uses any information it obtains from FMCSA in a decision to not hire you or to make any other adverse employment decision regarding you, the Prospective Employer will provide you with a copy of the report upon which its decision was based and a written summary of your rights under the Fair Credit Reporting Act before taking any final adverse action. If any final adverse action is taken against you based upon your driving history or safety report, the Prospective Employer will notify you that the action has been taken and that the action was based in part or in whole on this report.</p>
+ <p>When the application for employment is submitted by mail, telephone, computer, or other similar means, if the Prospective Employer uses any information it obtains from FMCSA in a decision to not hire you or to make any other adverse employment decision regarding you, the Prospective Employer must provide you within three business days of taking adverse action oral, written or electronic notification: that adverse action has been taken based in whole or in part on information obtained  from FMCSA; the name, address, and the toll free telephone number of FMCSA; that the FMCSA did not make the decision to take the adverse action and is unable to provide you the specific reasons why the adverse action was taken; and that you may, upon providing proper identification, request a free copy of the report and may dispute with the FMCSA the accuracy or completeness of any information or report. If you request a copy of a driver record from the Prospective Employer who procured the report, then, within 3 business days of receiving your request, together with proper identification, the Prospective Employer must send or provide to you a copy of your report and a summary of your rights under the Fair Credit Reporting Act.</p>
+ <p>The Prospective Employer cannot obtain background reports from FMCSA unless you consent in writing.</p>
+ <p>If you agree that the Prospective Employer may obtain such background reports, please read the following and sign below:</p>
+
+ <br/>
+ <p>2.&nbsp;&nbsp;I authorize <strong>".$detail['consent']->authorize_name_hereby."</strong> (\"Prospective Employer\") to access the FMCSA Pre-Employment Screening Program PSP</div></p><br /><br />
+ <p>system to seek information regarding my commercial driving safety record and information regarding my safety inspection history. I understand that I am consenting to the release of safety performance information including crash data from the previous five (5) years and inspection history from the previous three (3) years. I understand and acknowledge that this release of information may assist the Prospective Employer to make a determination regarding my suitability as an employee.</p>
+ <p>3.&nbsp;&nbsp;I further understand that neither the Prospective Employer nor the FMCSA contractor supplying the crash and safety information has the capability to correct any safety data that appears to be incorrect. I understand I may challenge the accuracy of the data by submitting a request to https://dataqs.fmcsa.dot.gov. If I am challenging crash or inspection information reported by a State, FMCSA cannot change or correct this data. I understand my request will be forwarded by the DataQs system to the appropriate State for adjudication.</p>
+ <p>4.&nbsp;&nbsp;Please note: Any crash or inspection in which you were involved will display on your PSP report. Since the PSP report does not report, or assign, or imply fault, it will include all Commercial Motor Vehicle (CMV) crashes where you were a driver or co-driver and where those crashes were reported to FMCSA, regardless of fault. Similarly, all inspections, with or without violations, appear on the PSP report. State citations associated with FMCSR violations that have been adjudicated by a court of law will also appear, and remain, on a PSP report.</p>
+ <p>I have read the above Notice Regarding Background Reports provided to me by Prospective Employer and I understand that if I sign this consent form, Prospective Employer may obtain a report of my crash and inspection history. I hereby authorize Prospective Employer and its employees, authorized agents, and/or affiliates to obtain the information authorized above.
+ <br /><br/>"; */
                 $pdf->writeHTMLCell(0, 0, '', '', $declare, 0, 1, 0, true, '', true);
                 
                 $pdf->Cell(80, 5, 'Date');

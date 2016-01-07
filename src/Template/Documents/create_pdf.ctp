@@ -185,23 +185,13 @@ $hereby = "<p><br/>I hereby consent to the search of the following:</p>
             <p>I certify that the information I have supplied is correct and true to the best of my knowledge. I consent to the release of a Criminal Record or any Criminal Information to ISB Canada and its partners, and to the Organization Requesting Search named below and its designated agents and/or partners. All data is subject to provincial, state, and federal privacy legislation.</p>
             <p>The criminal record search will be performed by a police service. I hereby release and forever discharge all members and employees of the Processing Police Service from any and all actions, claims and demands for damages, loss or injury howsoever arising which may hereafter be sustained by myself or as a result of the disclosure of information by the Processing Police Service to ISB Canada and its partners.</p>
             <p>*I hereby release and forever discharge all agents from any claims, actions demands for damages, injury or loss which may arise as a result of the disclosure of information by any of the information sources including but not limited to the Credit Bureau or Department of Motor Vehicles to the designated agents and/or their partners and representatives. </p>
-            <p>*I am aware and I give consent that the records named above may be transmitted electronically or in hard copy within Canada and to the country from where the search was requested as indicated below. By signing this waiver, I acknowledge full understanding of the content on this consent form.</p>
+            <p>*I am aware and I give consent that the records named above may be transmitted electronically or in hard copy within Canada and to the country from where the search was requested as indicated below. By signing this waiver, I acknowledge full understanding of the content on this consent form.</p>";
         
         
      
      
         
-            Applicant's Signature- by signing this form you agree and consent to the terms and release of information listed on this form: ";
-            $hereby = $hereby."<br/><br/><p>
-                            <strong>Signature of Driver</strong><br />";
-                if(isset($detail['consent']) && $detail['consent']->criminal_signature_applicant2){
-                    $hereby = $hereby."<img src=\"".$initials.$this->request->webroot.'canvas/'.$detail['consent']->criminal_signature_applicant2."\" style=\"max-width: 100%;\" />";
-                    }
-                $hereby = $hereby."<p>
-                            <strong>Signature of Company Witness</strong><br />";
-                if(isset($detail['consent']) && $detail['consent']->signature_company_witness2){
-                    $hereby = $hereby."<img src=\"".$initials.$this->request->webroot.'canvas/'.$detail['consent']->signature_company_witness2."\" style=\"max-width: 100%;\" /><br/>";
-                      }      
+
                 
    // $pdf->writeHTMLCell(0, 0, '', '', $attach, 0, 1, 0, true, '', true);
             $pdf->writeHTMLCell(0, 0, '', '', $hereby, 0, 1, 0, true, '', true);
@@ -279,17 +269,23 @@ $hereby = "<p><br/>I hereby consent to the search of the following:</p>
                 
                 //var_dump($cri);die();
                 
-                if($cri)
-                {
-                    foreach($cri as $criminal)
-                    {
-                        
+                if($cri) {
+                    foreach($cri as $criminal) {
                         $declare = $declare.'<tr><td>'.$criminal->offence.'</td><td>'.$criminal->date_of_sentence.'</td><td>'.$criminal->location.'</td></tr>';
-                       
                     }                    
                 }
                 
-                $declare = $declare.'</table>';
+                $declare .= "</table>  Applicant's Signature- by signing this form you agree and consent to the terms and release of information listed on this form: ";
+                $declare .= "<br/><br/><p><strong>Signature of Driver</strong><br />";
+                if(isset($detail['consent']) && $detail['consent']->criminal_signature_applicant2){
+                    $declare .= "<img src=\"" . $initials.$this->request->webroot . 'canvas/' . $detail['consent']->criminal_signature_applicant2 . "\" style=\"max-width: 100%;\" />";
+                }
+                $declare .= "<p><strong>Signature of Company Witness</strong><br />";
+                if(isset($detail['consent']) && $detail['consent']->signature_company_witness2){
+                    $declare .= "<img src=\"" . $initials.$this->request->webroot . 'canvas/' . $detail['consent']->signature_company_witness2 . "\" style=\"max-width: 100%;\" /><br/>";
+                }
+
+
                 /*$declare = $declare."<p>
                 <strong>Mandatory use for all account holders</strong>
                 <br/>

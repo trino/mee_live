@@ -1,6 +1,7 @@
  <?php
- if($this->request->session()->read('debug'))
-        echo "<span style ='color:red;'>consent_form.php #INC156</span>";
+     if($this->request->session()->read('debug')) {
+         echo "<span style ='color:red;'>consent_form.php #INC156</span>";
+     }
  ?>
 <div class="portlet box blue ">
 	<div class="portlet-title">

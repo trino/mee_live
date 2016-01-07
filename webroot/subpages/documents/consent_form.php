@@ -147,18 +147,6 @@
         </div>
 
         <div class="form-group row">
-            <label style="  text-align: left;" class="control-label col-md-11"><?= $strings2["consent_d0"]; ?>: </label>
-        </div>
-
-        <div class="form-group col-md-6">
-            <?php include('canvas/consent_signature_driver2.php'); ?>
-        </div>
-        <div class="form-group col-md-6">
-            <?php include('canvas/consent_signature_witness2.php'); ?>
-        </div>
-
-        <div class="clearfix"></div>
-        <div class="form-group row">
 
 
             <div class="col-md-4"><label class="control-label"><?= $strings2["consent_companynam"]; ?>: </label>
@@ -319,6 +307,18 @@
 
     <div class="clearfix"></div>
     <hr/>
+
+
+    <div class="form-group row">
+        <label style="  text-align: left;" class="control-label col-md-11"><?= $strings2["consent_d0"]; ?>: </label>
+    </div>
+    <div class="form-group col-md-6">
+        <?php include('canvas/consent_signature_driver2.php'); ?>
+    </div>
+    <div class="form-group col-md-6">
+        <?php include('canvas/consent_signature_witness2.php'); ?>
+    </div>
+    <div class="clearfix"></div>
 
     <!--div class="form-group row">
         <h3 class="col-md-12">
@@ -482,8 +482,7 @@
         <?php }?>
 
         <?php
-        if(($this->request->params['action']=='addorder' || $this->request->params['action']=='add') && !count($sub2['con_at']))
-        {
+        if(($this->request->params['action']=='addorder' || $this->request->params['action']=='add') && !count($sub2['con_at']))    {
             ?>
         fileUpload('consent1');
 
