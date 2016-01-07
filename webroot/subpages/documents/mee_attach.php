@@ -249,7 +249,7 @@
                             $get_prov = $this->requestAction('/profiles/getDriverProv/'.$_GET['driver']);
                             if($this->request->params['action'] == 'addorder' || $this->request->params['action'] == 'add'){
                                 if (!$mee_more && in_array($get_prov,$lprov)) {
-                                    makeBrowseButton(7, true, false, 'Abstract <FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
+                                    makeBrowseButton(7, true, false, '<FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
                                 }
                                 if($US_driving_exp && !is_iterable($mee_more)){
                                     makeBrowseButton(20, true, false, '<FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
