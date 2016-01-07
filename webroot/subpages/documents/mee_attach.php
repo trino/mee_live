@@ -147,7 +147,7 @@
         function printfile($webroot, $cc, $file, $skip=false,$rem='', $prepend=""){
             if(!is_object($file) || !$file->attachments || isset($GLOBALS["files"][$file->attachments])){return false;}
             $GLOBALS["files"][$file->attachments]=true;
-
+            $prepend="";
             $path = $webroot . "attachments/" . $file->attachments;
             $realpath = getcwd() . "/attachments/" . $file->attachments;
             if (file_exists($realpath)) {//do not remove this check!
@@ -253,7 +253,7 @@
                                 if (!$mee_more && in_array($get_prov,$lprov)) {
                                     makeBrowseButton(7, true, false, '<FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
                                 }
-                                if($US_driving_exp && !is_iterable($mee_more)){
+                                if($US_driving_exp && !is_iterable($mee_more) && count($attachment) >1){
                                     makeBrowseButton(20, true, false, '<FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
                                 }
                             }else{
@@ -266,16 +266,14 @@
                                 $did8=0;
                                 foreach($mee_more as $key => $file) {//id, mee_id, attachments
                                     if($did8 == 0){
-                                        if(printfile($this->request->webroot, 8, $file,'','norem')){$did8 = 1;}
-                                    } else if($did8 == 1){
-
+                                        if(printfile($this->request->webroot, 8, $file,'','norem', "0x01")){$did8 = 1;}
                                     }
                                 }
 
                             }
-                            if($US_driving_exp && count($attachment) >1) {
+                            if($US_driving_exp) {
                                 if ($file == "psp.pdf") {$file = last($mee_more);}
-                                printfile($this->request->webroot, 20, $file, '', 'norem');
+                                printfile($this->request->webroot, 20, $file, '', 'norem', "0x02");
                             }
                         ?>
 
@@ -444,7 +442,7 @@
                         $cc = 8;
                         if(isset($mee_more) && is_iterable($mee_more)) {
                             foreach($mee_more as $key => $file) {//id, mee_id, attachments
-                                if( printfile($this->request->webroot, $cc, $file, $skip)){
+                                if( printfile($this->request->webroot, $cc, $file, $skip, "0x03")){
                                     $skip=false;
                                 }
                                 $cc++;
