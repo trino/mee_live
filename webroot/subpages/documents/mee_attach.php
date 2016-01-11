@@ -66,7 +66,7 @@
             if($US_driving_exp && in_array("77", $forms)){
                 $attachment["PSP Consent"] = "psp.pdf";
             } else {
-                $US_driving_exp = false;
+                //$US_driving_exp = false;
             }
         }
 
@@ -249,11 +249,13 @@
                             $mee_more = false;
                             $lprov = array('BC','QC','SK');
                             $get_prov = $this->requestAction('/profiles/getDriverProv/'.$_GET['driver']);
+                            $countneeded=0;
                             if($this->request->params['action'] == 'addorder' || $this->request->params['action'] == 'add'){
                                 if (!$mee_more && in_array($get_prov,$lprov)) {
                                     makeBrowseButton(7, true, false, '<FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
+                                    $countneeded=1;
                                 }
-                                if($US_driving_exp && !is_iterable($mee_more) && count($attachment) >1){
+                                if($US_driving_exp && !is_iterable($mee_more) && count($attachment) >$countneeded){
                                     makeBrowseButton(20, true, false, '<FONT COLOR="RED">* ' . $strings2["upload_required"] . '</FONT>');
                                 }
                             }else{
