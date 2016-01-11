@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2016 at 10:38 PM
+-- Generation Time: Jan 11, 2016 at 11:14 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -32,14 +32,14 @@ CREATE TABLE IF NOT EXISTS `strings` (
   `English` varchar(4096) NOT NULL,
   `French` varchar(4096) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=873 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=874 ;
 
 --
 -- Dumping data for table `strings`
 --
 
 INSERT INTO `strings` (`ID`, `Name`, `English`, `French`) VALUES
-(1, 'Date', '1452111223', '<-- This is used by the system to auto-update'),
+(1, 'Date', '1452116744', '<-- This is used by the system to auto-update'),
 (2, 'dashboard_affirmative', 'Yes', 'Oui'),
 (3, 'dashboard_negative', 'No', 'Non'),
 (4, 'dashboard_selectall', 'Select All', 'Tout sélectionner'),
@@ -552,8 +552,8 @@ INSERT INTO `strings` (`ID`, `Name`, `English`, `French`) VALUES
 (523, 'upload_uploadcvor', 'Upload CVOR', 'Ajouter IUVU'),
 (524, 'upload_uploadresu', 'Upload Resume', 'Déposez votre CV'),
 (525, 'upload_uploadcert', 'Upload Certifications', 'Ajouter Certifications'),
-(526, 'upload_step2', '<STRONG>Step %number%: </STRONG> Upload Abstract/PSP Consent Form (Above)', '<STRONG>Étape %number%: </STRONG> Télécharger Résumé/PSP formulaire de consentement (Ci-dessus)'),
-(527, 'upload_step1', '<STRONG>Step %number%: </STRONG> Please download, fill out, and upload<BR>using the ''Browse'' button next to ''Driver''s Record Abstract''', '<STRONG>Étape %number%: </STRONG> S''il vous plaît télécharger, remplir, et de télécharger<BR>en utilisant le bouton ''Feuilleter'' à côté de ''la fiche résumé du conducteur'''),
+(526, 'upload_step2', '<STRONG>Step %number%: </STRONG> Upload required Consent form(s) (Above)', '<STRONG>Étape %number%: </STRONG> Formulaire de téléchargement nécessaire de consentement (s) (ci-dessus)'),
+(527, 'upload_step1', '<STRONG>Step %number%: </STRONG> Please download, fill out, and upload<BR>using the ''Browse'' button in Step 2', '<STRONG>Étape %number%: </STRONG> S''il vous plaît télécharger, remplir, et de télécharger <BR> en utilisant le bouton ''Parcourir'' à l''étape 2'),
 (528, 'orders_view', 'View Order', 'Voir Commander'),
 (529, 'orders_create', 'Create Order', 'Créer une commande'),
 (530, 'orders_edit', 'Edit Order', 'Modifier la commande'),
@@ -877,7 +877,8 @@ INSERT INTO `strings` (`ID`, `Name`, `English`, `French`) VALUES
 (869, 'profiles_us_exp', 'Does this driver have US driving experience?', 'Est-ce que ce pilote nous ont l''expérience de conduite?'),
 (870, 'email_wasfired_message', '<A HREF="%path%">%name%</A> was un-hired by %byname% at %created%', 'email_washired_message'),
 (871, 'dashboard_nojavascript', 'Javascript is required to use this page, please enable it', 'Javascript est nécessaire pour utiliser cette page, s''il vous plaît permettre'),
-(872, 'profiles_province', 'Province', 'Province');
+(872, 'profiles_province', 'Province', 'Province'),
+(873, 'forms_missingpsp', 'Missing the PSP consent form', 'Manque le formulaire de consentement PSP');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -369,6 +369,12 @@ var FormWizard = function () {
                                 }
                             }
 
+                            if(Forms[i] == 77) {//PSP
+                                if ($('.mee_att_20').val().length == 0) {
+                                    MissingData = MissingPSP;
+                                }
+                            }
+
                             if($('#mee_att_7').length>0){
                                 if ($('.mee_att_7').val().length == 0) {//abstract form
                                     MissingData = MissingAbstract;
