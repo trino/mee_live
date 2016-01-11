@@ -369,7 +369,7 @@ var FormWizard = function () {
                                 }
                             }
 
-                            if(Forms[i] == 77) {//PSP
+                            if(Forms[i] == 77 && $('.mee_att_20').length) {//PSP
                                 if ($('.mee_att_20').val().length == 0) {
                                     MissingData = MissingPSP;
                                 }
