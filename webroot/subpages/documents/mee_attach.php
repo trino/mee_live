@@ -35,7 +35,7 @@
         } else {
             $Profile = $Manager->get_profile($_GET["driver"]);
         }
-        $US_driving_exp = $Profile->us_driving_experience;
+        $US_driving_exp = true;//$Profile->us_driving_experience;
 
         function makeBrowseButton($ID, $Display, $Remove = true, $text=""){
             if(!$Display){$Display=' style="display: none;"';} else{ $Display="";}

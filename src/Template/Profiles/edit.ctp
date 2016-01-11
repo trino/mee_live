@@ -206,11 +206,11 @@
                                         }
                                         echo '/> ' . $strings["profiles_washired"] . ' <span class="hired_msg"></span></label>';
 
-                                        echo '<LABEL><input type="checkbox" name="us_driving_experience" value="1" id="' . $profile->id . '" class="checkusexp"';
+                                        /* echo '<LABEL><input type="checkbox" name="us_driving_experience" value="1" id="' . $profile->id . '" class="checkusexp"';
                                             if(isset($p->us_driving_experience) && $p->us_driving_experience) {
                                                 echo ' checked="checked"';
                                             }
-                                        echo '/> ' . $strings["profiles_us_exp"] . '<BR><span class="exp_msg"></span></LABEL>';
+                                        echo '/> ' . $strings["profiles_us_exp"] . '<BR><span class="exp_msg"></span></LABEL>'; */
 /*
                                         echo '<br><label class="uniform-inline" style="clear:both;margin-bottom: 20px;">
                                         <input type="checkbox" name="" value="1" id="' . $profile->id . '" class="checkrequalify"' . $is_disabled;
